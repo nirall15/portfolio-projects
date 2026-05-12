@@ -6,7 +6,8 @@ A collection of end-to-end data analytics projects using real public datasets. E
 ## Table of Contents
 
 1. [Hospital Readmission Risk Analysis](./hospital_readmission_analysis.sql)
-2. [Public Company Earnings & Anomaly Tracker](#2-public-company-earnings--anomaly-tracker)
+2. [Hyperscaler AI Infrastructure & CapEx Analysis](#2-hyperscaler-ai-infrastructure--capex-analysis)
+3. [Public Company Earnings & Anomaly Tracker](#2-public-company-earnings--anomaly-tracker)
 
 ---
 
@@ -60,10 +61,61 @@ MySQL (MySQL Workbench), Tableau (in progress)
 - [hospital_readmission_analysis.sql](./hospital_readmission_analysis.sql)
 - [Tableau Dashboard](https://public.tableau.com/views/HospitalReadmissionRiskAnalysis_17784699066340/Dashboard1)
 
+---
+## 2. Hyperscaler AI Infrastructure & CapEx Analysis
+
+### Overview
+Analyzed capital expenditure (CapEx) trends and AI infrastructure spending across the four
+major hyperscalers — Microsoft, Google, Amazon, and Meta — over 8 quarters (2024–2025).
+Tracks how aggressively each company is investing in AI infrastructure relative to their
+revenue, and identifies which is "stretching" the most financially.
+
+Also includes a qualitative legal risk tracker monitoring active antitrust cases against
+each company (DOJ, FTC) and their potential financial impact.
+
+### Data Source
+- **Dataset:** Manually curated from company 10-Q SEC filings and earnings press releases
+- **Companies:** MSFT, GOOGL, AMZN, META
+- **Period:** Q1 2024 – Q4 2025 (8 quarters per company, 32 rows)
+
+### Tools
+MySQL (MySQL Workbench), Tableau Public
+
+### SQL Skills Demonstrated
+- Multi-table schema design with primary keys and indexes
+- `LAG()` window function for QoQ and YoY growth calculations
+- `PARTITION BY` for per-company growth tracking
+- SQL Views (`CREATE VIEW`) to modularize reusable logic
+- `RANK() OVER` for cross-company quarterly ranking
+- Aggregate functions: `SUM`, `AVG`, `MIN`, `MAX`, `ROUND`
+- Derived metrics: CapEx as % of revenue, growth rates
+
+### Queries & Views
+
+| Object | Type | Description |
+|--------|------|-------------|
+| `v_capex_to_revenue` | View | CapEx as % of revenue per quarter per company |
+| `v_capex_growth` | View | QoQ and YoY CapEx growth using LAG() |
+| `v_summary_stats` | View | 2-year totals, averages, min/max per company |
+| Query 1 | Analysis | Who spent the most over 2 years? |
+| Query 2 | Analysis | CapEx-to-revenue ratio — who is stretching most? |
+| Query 3 | Analysis | QoQ and YoY growth in 2025 |
+| Query 4 | Analysis | Total AI infrastructure spend by year across all 4 |
+| Query 5 | Analysis | Rank companies by CapEx within each quarter |
+
+### Key Findings
+- Amazon had the highest total 2-year CapEx across all 4 hyperscalers
+- Meta showed the steepest YoY CapEx growth rate in 2025, signaling aggressive AI catch-up spending
+- All 4 companies significantly accelerated CapEx from 2024 to 2025, reflecting the AI infrastructure arms race
+- Google maintains the highest CapEx-to-revenue ratio among the group, suggesting the greatest relative financial stretch
+- All 4 companies face active high-impact antitrust cases (DOJ/FTC) which could materially affect future spending capacity
+
+### Links
+- [View SQL](./hyperscaler_analysis.sql)
+- [Tableau Dashboard](https://public.tableau.com/views/HyperscalerAIInfrastructureAnalysis/Dashboard1)
 
 ---
-
-## 2. Public Company Earnings & Anomaly Tracker
+## 3. Public Company Earnings & Anomaly Tracker
 
 ### Overview
 Analyzed 2.2M financial records across 6,169 public companies from SEC EDGAR 
