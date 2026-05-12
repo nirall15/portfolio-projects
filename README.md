@@ -1,4 +1,4 @@
-# SQL & Tableau Portfolio
+# Project Portfolio
 A collection of end-to-end data analytics projects using real public datasets. Each project covers data ingestion, cleaning, SQL analysis, and Tableau visualization.
 
 ---
@@ -6,6 +6,7 @@ A collection of end-to-end data analytics projects using real public datasets. E
 ## Table of Contents
 
 1. [Hospital Readmission Risk Analysis](./hospital_readmission_analysis.sql)
+2. [Public Company Earnings & Anomaly Tracker](#2-public-company-earnings--anomaly-tracker)
 
 ---
 
@@ -58,3 +59,32 @@ MySQL (MySQL Workbench), Tableau (in progress)
 ### Files
 - [hospital_readmission_analysis.sql](./hospital_readmission_analysis.sql)
 - [Tableau Dashboard](https://public.tableau.com/views/HospitalReadmissionRiskAnalysis_17784699066340/Dashboard1)
+
+
+---
+
+## 2. Public Company Earnings & Anomaly Tracker
+
+### Overview
+Analyzed 2.2M financial records across 6,169 public companies from SEC EDGAR 
+Q1 2026 10-Q filings to identify top performers, industry trends, and cash 
+burn anomalies.
+
+### Data Source
+- **Dataset:** SEC EDGAR Financial Statement Data Sets Q1 2026
+- **Source:** [sec.gov](https://www.sec.gov/data-research/sec-markets-data/financial-statement-data-sets)
+- **Records:** 2.2M financial records | 6,169 companies | 1 quarter
+
+### Tools
+MySQL (MySQL Workbench), Tableau (in progress)
+
+### SQL Skills Demonstrated
+- Multi-table JOIN across companies and financials
+- Pivot logic using `MAX(CASE WHEN tag = '...' THEN value END)`
+- `NULLIF` for divide-by-zero protection in margin calculations
+- Anomaly detection using `HAVING` with compound conditions
+- Aggregate functions across millions of rows
+- Industry-level grouping by SIC code
+
+### Files
+- [earnings_anomaly_tracker.sql](./earnings_anomaly_tracker.sql)
